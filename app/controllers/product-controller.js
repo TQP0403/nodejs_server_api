@@ -1,5 +1,5 @@
 let db = require("./../services/mysql-db");
-let util = require("./../util");
+let util = require("./../share/util");
 
 module.exports = {
   getAll: (req, res) => {

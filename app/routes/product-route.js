@@ -1,9 +1,11 @@
-let controller = require("./../controllers/product-controller");
-module.exports = (app) => {
-  app.route("/products").get(controller.getAll).post(controller.create);
-  app
-    .route("/products/:id")
-    .get(controller.getById)
-    .put(controller.update)
-    .delete(controller.delete);
-};
+const controller = require("./../controllers/product-controller");
+const router = require("express").Router();
+
+router
+  .get("/", controller.getAll)
+  .post("/", controller.create)
+  .get("/:id", controller.getById)
+  .put("/:id", controller.update)
+  .delete("/:id", controller.delete);
+
+module.exports = router;

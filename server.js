@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //import routes
-var routes = require("./app/routes/route");
+const routes = require("./app/routes/route");
 routes(app);
 
 // app.use((req, res) =>

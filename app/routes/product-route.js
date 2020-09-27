@@ -1,5 +1,6 @@
 const controller = require("./../controllers/product-controller");
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 
 router
   .get("/", controller.getAll)

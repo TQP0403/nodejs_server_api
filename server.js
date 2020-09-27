@@ -1,10 +1,11 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const methodOverride = require("method-override");
-
 const hostName = process.env.HOST || "localhost";
 const port = process.env.PORT || 3000;
+
+const routes = require("./app/routes/route");
+const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
+const express = require("express");
+const app = express();
 
 app.use(methodOverride("X-HTTP-Method-Override"));
 
@@ -12,9 +13,7 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//import routes
-const routes = require("./app/routes/route");
-routes(app);
+routes(app); // route
 
 // app.use((req, res) =>
 //   res.status(404).send({ url: req.originalUrl + " not found" })

@@ -1,8 +1,8 @@
 const db = require("./../services/mysql-db");
 const util = require("./../share/util");
 
-module.exports = {
-  getAll: (req, res) => {
+class ProductController {
+  getAll(req, res) {
     let sql = "Select * from products";
     db.query(sql, (err, rows) => {
       if (err) {
@@ -12,21 +12,21 @@ module.exports = {
         util.jsonResponse(res, 200, rows);
       }
     });
-  },
+  }
 
-  getById: (req, res) => {
+  getById(req, res) {
     let sql = "Select * from products where id = ?";
     db.query(sql, [req.params.id], (err, rows) => {
       if (err) {
         console.error(err);
         util.jsonResponse(res, 403);
       } else {
-        util.jsonResponse(res, 200, rows);
+        util.jsonResponse(res, 200, rows[0]);
       }
     });
-  },
+  }
 
-  create: (req, res) => {
+  create(req, res) {
     let data = req.body.data;
     if (!data.name || !data.color || !data.price) {
       util.jsonResponse(res, 403);
@@ -44,9 +44,9 @@ module.exports = {
         // res.json(rows);
       });
     }
-  },
+  }
 
-  update: (req, res) => {
+  update(req, res) {
     let data = req.body.data;
     if (!data.name || !data.color || !data.price) {
       util.jsonResponse(res, 403);
@@ -69,9 +69,9 @@ module.exports = {
         }
       );
     }
-  },
+  }
 
-  delete: (req, res) => {
+  delete(req, res) {
     let sql = "Delete from products where id = ?";
     db.query(sql, [req.params.id], (err, rows) => {
       if (err) {
@@ -84,5 +84,7 @@ module.exports = {
       }
       //   res.json(rows);
     });
-  },
-};
+  }
+}
+
+module.exports = new ProductController();

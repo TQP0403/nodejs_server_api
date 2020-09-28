@@ -27,6 +27,7 @@
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.7",
     "mongoose-auto-increment": "^5.0.1",
+    "mongoose-delete": "^0.5.2",
     "mysql": "^2.18.1"
   },
   "devDependencies": {

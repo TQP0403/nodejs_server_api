@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
-let mongoDB = 'mongodb://localhost:27017/test';
+let host = process.env.MONGODB_HOST || 'localhost';
+let port = process.env.MONGODB_PORT || 27017;
+let name = process.env.MONGODB_NAME || 'test';
+let mongoDB = 'mongodb://' + host + ':' + port + '/' + name;
+// let mongoDB = 'mongodb://localhost:27017/test';
 
 async function connect() {
   try {

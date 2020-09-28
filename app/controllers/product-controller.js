@@ -1,4 +1,4 @@
-const db = require('./../services/mysql-db');
+// const db = require('./../services/mysql-db');
 const Product = require('./../models/product');
 const util = require('./../share/util');
 
@@ -89,14 +89,34 @@ class ProductController {
   // }
 
   // mongodb
-  getAll(req, res) {
-    Product.find()
+
+  get(req, res) {
+    var query = Product.find();
+
+    if (req.params.id) query = Product.findOne().byId(req.params.id);
+
+    query
       .then((products) => res.status(200).json(products))
       .catch((err) => res.status(500).json(err));
   }
 
-  getById(req, res) {
-    Product.findOne({ id: Number(req.params.id) })
+  getDeleted(req, res) {
+    var query = Product.findDeleted();
+
+    if (req.params.id) query = Product.findOneDeleted().byId(req.params.id);
+
+    query
+      .then((products) => res.status(200).json(products))
+      .catch((err) => res.status(500).json(err));
+  }
+
+  getForce(req, res) {
+    var query = Product.findWithDeleted();
+
+    if (req.params.id) query = Product.findOneWithDeleted().byId(req.params.id);
+
+    query
+      .exec()
       .then((products) => res.status(200).json(products))
       .catch((err) => res.status(500).json(err));
   }
@@ -123,14 +143,39 @@ class ProductController {
     if (!data.name || !data.color || !data.price) {
       util.jsonResponse(res, 403);
     } else {
-      Product.updateOne({ id: Number(req.params.id) }, data)
+      Product.updateOne(data)
+        .byId(req.params.id)
         .then(() => util.jsonResponse(res, 200))
         .catch((err) => util.jsonResponse(res, 417));
     }
   }
 
   delete(req, res) {
-    Product.deleteOne({ id: Number(req.params.id) })
+    var query = Product.delete();
+
+    if (req.params.id) query = Product.delete().byId(req.params.id);
+
+    query
+      .then(() => util.jsonResponse(res, 200))
+      .catch((err) => util.jsonResponse(res, 417));
+  }
+
+  restore(req, res) {
+    var query = Product.restore();
+
+    if (req.params.id) query = Product.restore().byId(req.params.id);
+
+    query
+      .then(() => util.jsonResponse(res, 200))
+      .catch((err) => util.jsonResponse(res, 417));
+  }
+
+  forceDelete(req, res) {
+    var query = Product.deleteMany();
+
+    if (req.params.id) query = Product.deleteOne().byId(req.params.id);
+
+    query
       .then(() => util.jsonResponse(res, 200))
       .catch((err) => util.jsonResponse(res, 417));
   }

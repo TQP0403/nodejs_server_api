@@ -3,10 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 router
-  .get('/', controller.getAll)
+  .get('/d/:id?', controller.getDeleted)
+  .get('/f/:id?', controller.getForce)
+  .get('/:id?', controller.get)
   .post('/', controller.create)
-  .get('/:id', controller.getById)
   .put('/:id', controller.update)
-  .delete('/:id', controller.delete);
+  .patch('/:id?', controller.restore)
+  .delete('/:id?', controller.delete)
+  .delete('/f/:id?', controller.forceDelete);
 
 module.exports = router;

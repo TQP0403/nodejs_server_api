@@ -1,9 +1,9 @@
-const db = require("./../services/mysql-db");
-const util = require("./../share/util");
+const db = require('./../services/mysql-db');
+const util = require('./../share/util');
 
 class ProductController {
   getAll(req, res) {
-    let sql = "Select * from products";
+    let sql = 'Select * from products';
     db.query(sql, (err, rows) => {
       if (err) {
         console.error(err);
@@ -15,7 +15,7 @@ class ProductController {
   }
 
   getById(req, res) {
-    let sql = "Select * from products where id = ?";
+    let sql = 'Select * from products where id = ?';
     db.query(sql, [req.params.id], (err, rows) => {
       if (err) {
         console.error(err);
@@ -31,7 +31,7 @@ class ProductController {
     if (!data.name || !data.color || !data.price) {
       util.jsonResponse(res, 403);
     } else {
-      let sql = "Insert into products (name, color, price) values (?, ?, ?)";
+      let sql = 'Insert into products (name, color, price) values (?, ?, ?)';
       db.query(sql, [data.name, data.color, data.price], (err, rows) => {
         if (err) {
           console.error(err);
@@ -52,7 +52,7 @@ class ProductController {
       util.jsonResponse(res, 403);
     } else {
       let sql =
-        "Update products set name = ?, color = ?, price = ? where id = ?";
+        'Update products set name = ?, color = ?, price = ? where id = ?';
       db.query(
         sql,
         [data.name, data.color, data.price, req.params.id],
@@ -72,7 +72,7 @@ class ProductController {
   }
 
   delete(req, res) {
-    let sql = "Delete from products where id = ?";
+    let sql = 'Delete from products where id = ?';
     db.query(sql, [req.params.id], (err, rows) => {
       if (err) {
         console.error(err);

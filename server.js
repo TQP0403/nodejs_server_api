@@ -8,6 +8,9 @@ const methodOverride = require('method-override');
 const express = require('express');
 const app = express();
 
+const mongodb = require('./app/services/mongo-db');
+mongodb.connect();
+
 app.use(morgan('combined'));
 
 app.use(methodOverride('X-HTTP-Method-Override'));

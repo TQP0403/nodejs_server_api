@@ -1,4 +1,4 @@
-const routes = require('./api/routes/route');
+const router = require('./api/routes/router');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -21,13 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-routes(app); // route
-
-// app.use(errorHandler);
-
-// app.use((req, res) =>
-//   res.status(404).send({ url: req.originalUrl + " not found" })
-// );
+router.setRoute(app); // route app
 
 app.listen(port, hostName, () =>
   console.log('Server listening on port ' + port)

@@ -18,6 +18,14 @@ Product.query.byId = function (id) {
   return this.where({ id: Number(id) || 0 });
 };
 
+Product.post('update', function (error, res, next) {
+  if (error.name === 'MongoError' && error.code === 11000) {
+    next(new Error('There was a duplicate key error'));
+  } else {
+    res.send('Hello');
+  }
+});
+
 //plugins
 Product.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 Product.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });

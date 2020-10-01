@@ -15,7 +15,7 @@ const Excercise = new Schema(
       type: String,
       required: [true, 'Image is required'],
     },
-    body_part: {
+    bodyPart: {
       type: String,
       default: '',
     },
@@ -31,12 +31,6 @@ const Excercise = new Schema(
   },
   { timestamps: true, versionKey: false }
 );
-
-Excercise.post('update', function (error, res, next) {
-  if (error.name === 'MongoError' && error.code === 11000) {
-    next(new Error('There was a duplicate key error'));
-  }
-});
 
 //plugins
 // Excercise.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });

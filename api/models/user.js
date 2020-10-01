@@ -36,11 +36,9 @@ const User = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-User.post('update', function (error, res, next) {
-  if (error.name === 'MongoError' && error.code === 11000) {
-    next(new Error('There was a duplicate key error'));
-  }
-});
+User.query.byId = function (id) {
+  return this.where({ _id: id });
+};
 
 //plugins
 // User.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });

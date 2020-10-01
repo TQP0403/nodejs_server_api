@@ -6,23 +6,31 @@ const Schema = mongoose.Schema;
 
 const Practice = new Schema(
   {
-    id_user: {
+    userId: {
       type: Schema.Types.ObjectId,
       require: [true, 'User id is required'],
     },
-    id_excercise: {
+    excerciseId: {
       type: Schema.Types.ObjectId,
       require: [true, 'Excercise id is required'],
+    },
+    startedAt: {
+      type: Date,
+      default: Date.now(),
+    },
+    pausedAt: {
+      type: Date,
+      default: null,
+    },
+    endedAt: {
+      type: Date,
+      default: null,
     },
   },
   { timestamps: true, versionKey: false }
 );
 
-Practice.post('update', function (error, res, next) {
-  if (error.name === 'MongoError' && error.code === 11000) {
-    next(new Error('There was a duplicate key error'));
-  }
-});
+Practice.pre('update', () => this.set({ pausedAt: new Date() }));
 
 //plugins
 // Practice.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });

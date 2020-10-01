@@ -89,7 +89,6 @@ class ProductController {
   // }
 
   // mongodb
-
   get(req, res, next) {
     var query = Product.find();
     if (req.params.id) query = Product.findOne().byId(req.params.id);
@@ -109,28 +108,19 @@ class ProductController {
   }
 
   create(req, res, next) {
-    let data = req.body.data;
-    var product = new Product({
-      name: data.name,
-      color: data.color,
-      price: data.price,
-    });
-    product
+    new Product(req.body.data)
       .save()
       .then((product) => util.jsonResponse(res, 201, product))
       .catch(next);
   }
 
   update(req, res, next) {
-    let data = req.body.data;
-    Product.updateOne(data)
+    Product.updateOne(req.body.data)
       .byId(req.params.id)
-      .then(() =>
-        Product.findOne()
-          .byId(req.params.id)
-          .then((product) => util.jsonResponse(res, 201, product))
-          .catch(next)
-      )
+      .then(() => {
+        return Product.findOne().byId(req.params.id).exec();
+      })
+      .then((product) => util.jsonResponse(res, 201, product))
       .catch(next);
   }
 
@@ -145,12 +135,11 @@ class ProductController {
     if (req.params.id) query = Product.restore().byId(req.params.id);
     query
       .then((product) => {
-        var getQuery = Product.find();
-        if (req.params.id) getQuery = Product.findOne().byId(req.params.id);
-        getQuery
-          .then((product) => util.jsonResponse(res, 201, product))
-          .catch(next);
+        var query = Product.find();
+        if (req.params.id) query = Product.findOne().byId(req.params.id);
+        return query.exec();
       })
+      .then((product) => util.jsonResponse(res, 201, product))
       .catch(next);
   }
 

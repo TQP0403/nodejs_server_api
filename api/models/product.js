@@ -7,9 +7,9 @@ const Schema = mongoose.Schema;
 const Product = new Schema(
   {
     id: { type: Number, default: 0 },
-    name: { type: String, default: '', required: [true, 'Name required'] },
-    color: { type: String, default: '', required: [true, 'Color required'] },
-    price: { type: Number, default: 0, required: [true, 'Price required'] },
+    name: { type: String, default: '', required: [true, 'Name is required'] },
+    color: { type: String, default: '', required: [true, 'Color is required'] },
+    price: { type: Number, default: 0, required: [true, 'Price is required'] },
   },
   { timestamps: true, versionKey: false }
 );
@@ -21,8 +21,6 @@ Product.query.byId = function (id) {
 Product.post('update', function (error, res, next) {
   if (error.name === 'MongoError' && error.code === 11000) {
     next(new Error('There was a duplicate key error'));
-  } else {
-    res.send('Hello');
   }
 });
 

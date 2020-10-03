@@ -13,9 +13,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "JavaScript",
+    "JS",
+    "Node JS",
+    "Node.js",
     "NodeJS",
+    "Node",
     "RESTful API",
-    "Server"
+    "REST API",
+    "API",
+    "Server",
+    "Fitness"
   ],
   "author": "TQP0403",
   "license": "ISC",
@@ -26,9 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.7",
-    "mongoose-delete": "^0.5.2",
-    "mongoose-sequence": "^5.2.2",
-    "mysql": "^2.18.1"
+    "mongoose-delete": "^0.5.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

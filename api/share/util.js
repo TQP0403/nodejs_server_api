@@ -1,7 +1,7 @@
 module.exports = {
   jsonResponse(res, statusCode, result) {
     let resData = {};
-    if (statusCode == 200 || 201) resData.status = 'success';
+    if (statusCode === 200 || 201) resData.status = 'success';
     if (result && result.length != 0) resData.data = result;
     res.status(statusCode).contentType('json').json(resData);
   },

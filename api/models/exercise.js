@@ -1,19 +1,17 @@
 const mongoose = require('mongoose');
-const mongooseDelete = require('mongoose-delete');
-const autoIncrement = require('mongoose-sequence')(mongoose);
-
 const Schema = mongoose.Schema;
 
-const Excercise = new Schema(
+const Exercise = new Schema(
   {
-    name: { type: String, required: [true, 'Excercise name is required'] },
+    name: { type: String, required: [true, 'Exercise name is required'] },
     description: {
       type: String,
       default: '',
     },
     image: {
       type: String,
-      required: [true, 'Image is required'],
+      // required: [true, 'Image is required'],
+      default: '',
     },
     bodyPart: {
       type: String,
@@ -32,8 +30,9 @@ const Excercise = new Schema(
   { timestamps: true, versionKey: false }
 );
 
-//plugins
-// Excercise.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });
-Excercise.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
+Exercise.query.byId = function (id) {
+  return this.where({ _id: id });
+};
 
-module.exports = mongoose.model('Excercise', Excercise);
+//plugins
+module.exports = mongoose.model('Exercise', Exercise);

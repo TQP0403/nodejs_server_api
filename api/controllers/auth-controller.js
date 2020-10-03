@@ -24,7 +24,7 @@ function getToken(user, res, next) {
 
 class AuthController {
   signUp(req, res, next) {
-    let data = req.body.data;
+    let data = req.body;
     bcrypt
       .hash(data.password, saltRounds)
       .then((hash) => {

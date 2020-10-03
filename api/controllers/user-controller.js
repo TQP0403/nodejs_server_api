@@ -5,12 +5,12 @@ class UserController {
   get(req, res, next) {
     User.findOne()
       .byId(req.id)
-      .then((users) => util.jsonResponse(res, 200, users))
+      .then((user) => util.jsonResponse(res, 200, user))
       .catch(next);
   }
 
   update(req, res, next) {
-    User.updateOne(req.body.data)
+    User.updateOne(req.body)
       .byId(req.id)
       .then(() => {
         return User.findOne().byId(req.id).exec();

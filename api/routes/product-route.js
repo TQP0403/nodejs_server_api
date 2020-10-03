@@ -1,6 +1,5 @@
 const controller = require('./../controllers/product-controller');
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
 router
   .get('/d/:id?', controller.getDeleted)

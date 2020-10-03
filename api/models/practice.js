@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const mongooseDelete = require('mongoose-delete');
-const autoIncrement = require('mongoose-sequence')(mongoose);
+// const mongooseDelete = require('mongoose-delete');
+// const autoIncrement = require('mongoose-sequence')(mongoose);
 
 const Schema = mongoose.Schema;
 
@@ -34,6 +34,6 @@ Practice.pre('update', () => this.set({ pausedAt: new Date() }));
 
 //plugins
 // Practice.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });
-Practice.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
+// Practice.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 
 module.exports = mongoose.model('Practice', Practice);

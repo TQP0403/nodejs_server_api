@@ -5,7 +5,7 @@ const saltRounds = 10;
 
 function getToken(user, res, next) {
   jwt.sign(
-    { id: user.id, email: user.email },
+    { userId: user.id },
     process.env.JWT_KEY,
     {
       expiresIn: '1h',

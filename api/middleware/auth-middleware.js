@@ -10,9 +10,7 @@ module.exports = (req, res, next) => {
       err.message = 'timeout';
       next(err);
     }
-    req.email = decoded.email;
-    req.id = decoded.id;
+    req.userId = decoded.id;
   });
-  console.log('token: ' + token);
   next();
 };

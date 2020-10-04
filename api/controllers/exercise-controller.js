@@ -11,7 +11,6 @@ class ExerciseController {
   }
 
   create(req, res, next) {
-    console.log('1');
     new Exercise(req.body)
       .save()
       .then((exercise) => util.jsonResponse(res, 201, exercise))

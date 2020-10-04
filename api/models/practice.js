@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 // const mongooseDelete = require('mongoose-delete');
-// const autoIncrement = require('mongoose-sequence')(mongoose);
 
 const Schema = mongoose.Schema;
 
@@ -10,30 +9,35 @@ const Practice = new Schema(
       type: Schema.Types.ObjectId,
       require: [true, 'User id is required'],
     },
-    excerciseId: {
+    exerciseId: {
       type: Schema.Types.ObjectId,
       require: [true, 'Excercise id is required'],
     },
-    startedAt: {
-      type: Date,
-      default: Date.now(),
+    count: {
+      type: Number,
+      default: 0,
     },
-    pausedAt: {
-      type: Date,
-      default: null,
-    },
-    endedAt: {
-      type: Date,
-      default: null,
+    timeSecond: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true, versionKey: false }
 );
 
-Practice.pre('update', () => this.set({ pausedAt: new Date() }));
+Practice.query.byId = function (id) {
+  return this.where({ _id: id });
+};
+
+Practice.query.byUserId = function (id) {
+  return this.where({ userId: id });
+};
+
+Practice.query.byExerciseId = function (id) {
+  return this.where({ exerciseId: id });
+};
 
 //plugins
-// Practice.plugin(autoIncrement, { inc_field: 'id', id: 'products_seq' });
 // Practice.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 
 module.exports = mongoose.model('Practice', Practice);

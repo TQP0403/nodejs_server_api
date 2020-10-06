@@ -7,7 +7,7 @@ const practiceRoute = require('./practice-route');
 const productRoute = require('./product-route');
 
 function setRoute(app) {
-  app.get('/', (req, res) => res.send('Hello World'));
+  // app.get('/', (req, res) => res.send('Hello World'));
 
   app.use('/', authRoute);
 

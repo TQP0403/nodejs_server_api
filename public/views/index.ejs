@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>socket.io</title>
+    </head>
+    <body>
+        <div id="user">Hello </div>
+        <div id="register-form"> 
+            <input id="username" type="text" placeholder="user name"/>
+            <button id="register">register</button>
+        </div>
+        <div id="chat-form">
+            <input id="txt" type="text"/>
+            <button id="chat">Send</button>
+            <div id="content"></div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="socket.io/socket.io.js"></script>
+        <script src="assets/js/index.js"></script>
+    </body>
+</html>

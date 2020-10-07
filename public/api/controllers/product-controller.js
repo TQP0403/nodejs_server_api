@@ -1,6 +1,6 @@
 // const db = require('./../services/mysql-db');
 const Product = require('./../models/product');
-const util = require('./../share/util');
+const util = require('./../../share/util');
 
 class ProductController {
   // mysql

@@ -1,5 +1,5 @@
 const User = require('./../models/user');
-const util = require('./../share/util');
+const util = require('./../../share/util');
 
 class UserController {
   get(req, res, next) {

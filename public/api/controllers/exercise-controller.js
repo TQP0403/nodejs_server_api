@@ -1,5 +1,5 @@
 const Exercise = require('./../models/exercise');
-const util = require('./../share/util');
+const util = require('./../../share/util');
 
 class ExerciseController {
   get(req, res, next) {

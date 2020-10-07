@@ -1,6 +1,6 @@
 require('dotenv/config');
 
-const router = require('./api/routes/router');
+const router = require('./public/router');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -19,7 +19,7 @@ const socket = require('./services/socket-io');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
-app.set('views', './public/views');
+app.set('views', './public/page/views');
 
 const mongodb = require('./services/mongo-db');
 mongodb.connect();
@@ -31,10 +31,6 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
-
-app.get('/',(req, res) => {
-  res.render('index')
-})
 
 router.setRoute(app); // route app
 

@@ -1,5 +1,5 @@
 const Practice = require('./../models/practice');
-const util = require('./../share/util');
+const util = require('./../../share/util');
 
 class PracticeController {
   // getDeleted(req, res, next) {

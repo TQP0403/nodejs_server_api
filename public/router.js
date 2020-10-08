@@ -7,12 +7,12 @@ const practiceRoute = require('./api/routes/practice-route');
 const productRoute = require('./api/routes/product-route');
 
 function setRoute(app) {
-  app.get('/', (req, res) => res.send('Hello World!!!'));   // for test
+  app.get('/', (req, res) => res.send('Hello World!!!')); // for test
 
   app.use('/', authRoute);
 
   app.get('/socket-io-chat', (req, res) => {
-    res.render('index');
+    res.render('socket');
   });
 
   app.use('/api/users', authMiddleware, userRoute);

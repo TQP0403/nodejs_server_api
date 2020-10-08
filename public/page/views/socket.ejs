@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>socket.io</title>
+    <link rel="stylesheet" type="text/css" href="page/assets/css/socket.css" />
+  </head>
+  <body>
+    <div id="user-list">
+      <button id="unregister">unregister</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Online Users</th>
+          </tr>
+        </thead>
+        <tbody id="users"></tbody>
+      </table>
+      <br />
+    </div>
+
+    <div id="room-list">
+      <button id="leave-room">leave room</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Rooms</th>
+          </tr>
+        </thead>
+        <tbody id="rooms"></tbody>
+      </table>
+      <br />
+    </div>
+
+    <div id="create-room-form">
+      <input id="roomname" type="text" placeholder="room name" />
+      <button id="create-room">Create room</button>
+    </div>
+
+    <div id="user"></div>
+
+    </div>
+      <input id="username" type="text" placeholder="user name" />
+      <button id="register">register</button>
+    </div>
+    <div id="chat-form">
+      <input id="txt" type="text" />
+      <button id="chat">Send</button>
+      <div id="content"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="page/assets/js/socket.js"></script>
+  </body>
+</html>
